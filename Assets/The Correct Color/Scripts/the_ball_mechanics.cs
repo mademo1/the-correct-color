@@ -16,13 +16,14 @@ public class the_ball_mechanics : MonoBehaviour
     public bool blue;
     public float time;
 
-    public float score;
+    public static int score;
     public TextMeshProUGUI score_text;
 
     public GameObject wall_destroying;
     public GameObject plus1_sound;
     public GameObject plus5_sound;
     public GameObject plus20_sound;
+    public GameObject dash_sound;
 
     // Start is called before the first frame update
     void Start()
@@ -55,18 +56,20 @@ public class the_ball_mechanics : MonoBehaviour
     {
         if (left_limit >= 1)
         {
-            transform.Translate(new Vector3(1, 0, 0) * -dash_velocity, Space.World);
+            transform.Translate(new Vector3(1, 0, 0) * -dash_velocity, Space.Self);
             left_limit = left_limit - 1;
             right_limit = right_limit + 1;
+            dash_sound.GetComponent<AudioSource>().Play();
         }
     }
     public void RightButton()
     {
         if (right_limit >= 1)
         {
-            transform.Translate(new Vector3(1, 0, 0) * dash_velocity, Space.World);
+            transform.Translate(new Vector3(1, 0, 0) * dash_velocity, Space.Self);
             right_limit = right_limit - 1;
             left_limit = left_limit + 1;
+            dash_sound.GetComponent<AudioSource>().Play();
         }
     }
 
@@ -114,12 +117,7 @@ public class the_ball_mechanics : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "red" || col.gameObject.tag == "green" || col.gameObject.tag == "blue")
-        {
-            SceneManager.LoadScene("game_over");
-        }
-
-        if ( col.gameObject.name == "wall")
+        if (col.gameObject.tag == "red" || col.gameObject.tag == "green" || col.gameObject.tag == "blue" || col.gameObject.tag == "end")
         {
             SceneManager.LoadScene("game_over");
         }

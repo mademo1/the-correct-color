@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - blue
+  - red
+  - green
+  - +20
+  - +1
+  - +5
+  - end
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,6 @@ public class ground_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(0, 0, 1) * Time.deltaTime * -ground_velocity, Space.World);
+        transform.Translate(new Vector3(0, 0, 1) * Time.deltaTime * -ground_velocity, Space.Self);
     }
 }
